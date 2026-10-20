@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =============================================================================================
+     开始界面"胜利条件"勾选框
+     ★ 三个示例胜利都需要
+
+     注意这是 **Configuration 数据库**（不是 Gameplay 数据库），
+     所以这个文件要在 FrontEndActions 里用 UpdateDatabase 载入。
+
+     Domain 决定它出现在哪个规则集的勾选列表里：
+       Expansion2_Victories → 只在《风云变幻》
+       StandardVictories    → 只在标准规则集
+       两个都写             → 两边都出现
+     不写这里 → 高级设置里没有你的开关，玩家关不掉它。
+     ============================================================================================= -->
+<GameInfo>
+  <Victories>
+    <Row Domain="Expansion2_Victories"
+         VictoryType="VICTORY_TPL_TIER0"
+         Name="LOC_VICTORY_TPL_TIER0_NAME"
+         Description="LOC_VICTORY_TPL_TIER0_DESC"/>
+    <Row Domain="Expansion2_Victories"
+         VictoryType="VICTORY_TPL_TIER1"
+         Name="LOC_VICTORY_TPL_TIER1_NAME"
+         Description="LOC_VICTORY_TPL_TIER1_DESC"/>
+    <Row Domain="Expansion2_Victories"
+         VictoryType="VICTORY_TPL_TIER2"
+         Name="LOC_VICTORY_TPL_TIER2_NAME"
+         Description="LOC_VICTORY_TPL_TIER2_DESC"/>
+  </Victories>
+</GameInfo>

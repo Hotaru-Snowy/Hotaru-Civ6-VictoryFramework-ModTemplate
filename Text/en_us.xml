@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+  <BaseGameText>
+
+    <!-- ===== Tier 0：纯数据库（真实建筑路线，无脚本）===== -->
+    <Row Tag="LOC_VICTORY_TPL_TIER0_NAME"><Text>Template Victory: Tier 0</Text></Row>
+    <Row Tag="LOC_VICTORY_TPL_TIER0_BLURB"><Text>Database only; the vanilla screen does the rest.</Text></Row>
+    <Row Tag="LOC_VICTORY_TPL_TIER0_DESC"><Text>Tier 0 example: no UI code and no script at all. The victory triggers as soon as the player owns Big Ben.</Text></Row>
+    <Row Tag="LOC_TPL_TIER0_PROGRESS"><Text>[ICON_Bolt] Own Big Ben</Text></Row>
+
+    <!-- ===== Tier 1：加排序 ===== -->
+    <Row Tag="LOC_VICTORY_TPL_TIER1_NAME"><Text>Template Victory: Tier 1</Text></Row>
+    <Row Tag="LOC_VICTORY_TPL_TIER1_BLURB"><Text>Adds custom sorting for the Overall tab.</Text></Row>
+    <Row Tag="LOC_VICTORY_TPL_TIER1_DESC"><Text>Tier 1 example: registers GetScore / GetText so the Overall tab sorts by your own metric.</Text></Row>
+    <Row Tag="LOC_TPL_TIER1_PROGRESS"><Text>[ICON_Bolt] Found 3 cities</Text></Row>
+    <Row Tag="LOC_BUILDING_TPL_TIER1_VICTORY"><Text>Template Victory Marker (Tier 1)</Text></Row>
+    <Row Tag="LOC_BUILDING_TPL_TIER1_VICTORY_DESC"><Text>Internal only.</Text></Row>
+    <Row Tag="LOC_TPL_TAB_TIER1"><Text>Template 1</Text></Row>
+    <Row Tag="LOC_TPL_TIER1_OVERALL"><Text>Template Points: {1_Score}</Text></Row>
+
+    <!-- ===== Tier 2：加自定义页签 ===== -->
+    <Row Tag="LOC_VICTORY_TPL_TIER2_NAME"><Text>Template Victory: Tier 2</Text></Row>
+    <Row Tag="LOC_VICTORY_TPL_TIER2_BLURB"><Text>Adds a fully custom tab view.</Text></Row>
+    <Row Tag="LOC_VICTORY_TPL_TIER2_DESC"><Text>Tier 2 example: registers a custom View, replacing the generic tab entirely.</Text></Row>
+    <Row Tag="LOC_TPL_TIER2_PROGRESS"><Text>[ICON_Bolt] Found 3 cities</Text></Row>
+    <Row Tag="LOC_BUILDING_TPL_TIER2_VICTORY"><Text>Template Victory Marker (Tier 2)</Text></Row>
+    <Row Tag="LOC_BUILDING_TPL_TIER2_VICTORY_DESC"><Text>Internal only.</Text></Row>
+    <Row Tag="LOC_TPL_TAB_TIER2"><Text>Template 2</Text></Row>
+    <Row Tag="LOC_TPL_TIER2_OVERALL"><Text>Template Progress: {1_Score}</Text></Row>
+    <Row Tag="LOC_TPL_TIER2_ROW"><Text>Cities founded: {1}</Text></Row>
+
+  </BaseGameText>
+</GameData>

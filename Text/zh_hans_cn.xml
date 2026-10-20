@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+  <LocalizedText>
+
+    <!-- ===== Tier 0：纯数据库（真实建筑路线，无脚本）===== -->
+    <Replace Tag="LOC_VICTORY_TPL_TIER0_NAME" Language="zh_Hans_CN"><Text>模板胜利·零档</Text></Replace>
+    <Replace Tag="LOC_VICTORY_TPL_TIER0_BLURB" Language="zh_Hans_CN"><Text>只写数据库，官方自动给页签。</Text></Replace>
+    <Replace Tag="LOC_VICTORY_TPL_TIER0_DESC" Language="zh_Hans_CN"><Text>零档示例：不写任何界面代码，也没有判定脚本。玩家造出大本钟的那一刻，引擎自己判胜。</Text></Replace>
+    <Replace Tag="LOC_TPL_TIER0_PROGRESS" Language="zh_Hans_CN"><Text>[ICON_Bolt] 拥有大本钟</Text></Replace>
+
+    <!-- ===== Tier 1：加排序 ===== -->
+    <Replace Tag="LOC_VICTORY_TPL_TIER1_NAME" Language="zh_Hans_CN"><Text>模板胜利·一档</Text></Replace>
+    <Replace Tag="LOC_VICTORY_TPL_TIER1_BLURB" Language="zh_Hans_CN"><Text>加一个 Provider，总览页按自己的指标排序。</Text></Replace>
+    <Replace Tag="LOC_VICTORY_TPL_TIER1_DESC" Language="zh_Hans_CN"><Text>一档示例：额外注册 GetScore / GetText，使总览页按自定义指标排序。</Text></Replace>
+    <Replace Tag="LOC_TPL_TIER1_PROGRESS" Language="zh_Hans_CN"><Text>[ICON_Bolt] 已建 3 座城市</Text></Replace>
+    <Replace Tag="LOC_BUILDING_TPL_TIER1_VICTORY" Language="zh_Hans_CN"><Text>模板判胜标记·一档</Text></Replace>
+    <Replace Tag="LOC_BUILDING_TPL_TIER1_VICTORY_DESC" Language="zh_Hans_CN"><Text>内部专用，不可建造。</Text></Replace>
+    <Replace Tag="LOC_TPL_TAB_TIER1" Language="zh_Hans_CN"><Text>模板一档</Text></Replace>
+    <Replace Tag="LOC_TPL_TIER1_OVERALL" Language="zh_Hans_CN"><Text>模板积分：{1_Score}</Text></Replace>
+
+    <!-- ===== Tier 2：加自定义页签 ===== -->
+    <Replace Tag="LOC_VICTORY_TPL_TIER2_NAME" Language="zh_Hans_CN"><Text>模板胜利·二档</Text></Replace>
+    <Replace Tag="LOC_VICTORY_TPL_TIER2_BLURB" Language="zh_Hans_CN"><Text>加一个自定义页签视图。</Text></Replace>
+    <Replace Tag="LOC_VICTORY_TPL_TIER2_DESC" Language="zh_Hans_CN"><Text>二档示例：注册 View，完全替换官方通用页签。</Text></Replace>
+    <Replace Tag="LOC_TPL_TIER2_PROGRESS" Language="zh_Hans_CN"><Text>[ICON_Bolt] 已建 3 座城市</Text></Replace>
+    <Replace Tag="LOC_BUILDING_TPL_TIER2_VICTORY" Language="zh_Hans_CN"><Text>模板判胜标记·二档</Text></Replace>
+    <Replace Tag="LOC_BUILDING_TPL_TIER2_VICTORY_DESC" Language="zh_Hans_CN"><Text>内部专用，不可建造。</Text></Replace>
+    <Replace Tag="LOC_TPL_TAB_TIER2" Language="zh_Hans_CN"><Text>模板二档</Text></Replace>
+    <Replace Tag="LOC_TPL_TIER2_OVERALL" Language="zh_Hans_CN"><Text>模板进度：{1_Score}</Text></Replace>
+    <Replace Tag="LOC_TPL_TIER2_ROW" Language="zh_Hans_CN"><Text>已建城市：{1}</Text></Replace>
+
+  </LocalizedText>
+</GameData>

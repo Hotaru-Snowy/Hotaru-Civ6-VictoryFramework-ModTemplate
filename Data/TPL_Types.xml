@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =============================================================================================
+     类型注册
+     ★ Tier 0 / 1 / 2 都需要
+
+     为什么必须用 XML 而不是 SQL：
+       Types 表的 Hash 列是 UNIQUE NOT NULL DEFAULT 0，
+       用 SQL 批量写入时每行都取默认值 0 → 互相冲突，只剩最后一条。
+       XML 加载器会自动为每行计算唯一 Hash（与官方和工坊 MOD 一致）。
+     ============================================================================================= -->
+<GameInfo>
+  <Types>
+    <!-- ===== 三个示例胜利的"胜利类型" =====
+         Kind 必须是 KIND_VICTORY，否则不会出现在胜利列表里。 -->
+    <Row Type="VICTORY_TPL_TIER0" Kind="KIND_VICTORY"/>
+    <Row Type="VICTORY_TPL_TIER1" Kind="KIND_VICTORY"/>
+    <Row Type="VICTORY_TPL_TIER2" Kind="KIND_VICTORY"/>
+
+    <!-- ===== 两个"判胜标记建筑"（只有 D 路线 / 虚拟建筑方案需要）=====
+         用途：当胜利条件无法用引擎的 Requirement 直接表达时（逻辑复杂、跨回合累积、
+               分数要 UI 算），把条件写成"玩家拥有建筑 X"（REQUIREMENT_PLAYER_HAS_BUILDING），
+               由 Lua 在真实条件达成时把 X 塞给玩家 → 引擎自然判胜。
+         Tier 0 示例走的是"真实建筑"路线，用大本钟当条件，所以这里没有它的标记建筑；
+         如果你的胜利是 A / B / C 路线之一，这两个建筑**完全不需要** ——
+               连同 TPL_Victories.xml 第 ④ 段一起删掉即可。
+         建筑必须 InternalOnly=1，见 TPL_Victories.xml。 -->
+    <Row Type="BUILDING_TPL_TIER1_VICTORY" Kind="KIND_BUILDING"/>
+    <Row Type="BUILDING_TPL_TIER2_VICTORY" Kind="KIND_BUILDING"/>
+  </Types>
+</GameInfo>

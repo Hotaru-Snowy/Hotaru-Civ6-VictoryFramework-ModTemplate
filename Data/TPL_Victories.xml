@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =============================================================================================
+     胜利定义 · 条件 · 进度文本 · 判胜标记建筑
+
+     三个示例故意用了两种判定方式，方便对照：
+       TIER0 —— A 路线（真实建筑）：条件 = 拥有大本钟，引擎自己判，没有脚本。
+       TIER1 / TIER2 —— D 路线（虚拟建筑）：条件 = 拥有隐藏标记建筑，
+                        由 Script/TPL_Gameplay.lua 在真实条件达成时把建筑塞给玩家。
+
+     想换成 B（完成项目）/ C（点数）也很简单：改 §② 的 RequirementType / 参数，
+     再把 §④ 整段删掉即可，示例见文件末尾的注释。
+     ============================================================================================= -->
+<GameInfo>
+
+  <!-- ===== ① 胜利定义 =====
+       RequirementSetId 指向 §② 那个条件集合，这是唯一的判胜依据。 -->
+  <Victories>
+    <Row VictoryType="VICTORY_TPL_TIER0"
+         Name="LOC_VICTORY_TPL_TIER0_NAME"
+         Blurb="LOC_VICTORY_TPL_TIER0_BLURB"
+         Description="LOC_VICTORY_TPL_TIER0_DESC"
+         RequirementSetId="REQSET_TPL_TIER0"
+         CriticalPercentage="100"/>
+    <Row VictoryType="VICTORY_TPL_TIER1"
+         Name="LOC_VICTORY_TPL_TIER1_NAME"
+         Blurb="LOC_VICTORY_TPL_TIER1_BLURB"
+         Description="LOC_VICTORY_TPL_TIER1_DESC"
+         RequirementSetId="REQSET_TPL_TIER1"
+         CriticalPercentage="100"/>
+    <Row VictoryType="VICTORY_TPL_TIER2"
+         Name="LOC_VICTORY_TPL_TIER2_NAME"
+         Blurb="LOC_VICTORY_TPL_TIER2_BLURB"
+         Description="LOC_VICTORY_TPL_TIER2_DESC"
+         RequirementSetId="REQSET_TPL_TIER2"
+         CriticalPercentage="100"/>
+  </Victories>
+
+  <!-- ===== ② 判定条件 =====
+       四张表：集合 → 条件 → 参数 → 把条件挂进集合。缺一张就不生效。
+       TIER0 指向真实建筑（大本钟）——A 路线；
+       TIER1 / TIER2 指向隐藏标记建筑——D 路线，由脚本塞给玩家。 -->
+  <RequirementSets>
+    <Row RequirementSetId="REQSET_TPL_TIER0" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+    <Row RequirementSetId="REQSET_TPL_TIER1" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+    <Row RequirementSetId="REQSET_TPL_TIER2" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+  </RequirementSets>
+
+  <Requirements>
+    <Row RequirementId="REQ_TPL_TIER0" RequirementType="REQUIREMENT_PLAYER_HAS_BUILDING"/>
+    <Row RequirementId="REQ_TPL_TIER1" RequirementType="REQUIREMENT_PLAYER_HAS_BUILDING"/>
+    <Row RequirementId="REQ_TPL_TIER2" RequirementType="REQUIREMENT_PLAYER_HAS_BUILDING"/>
+  </Requirements>
+
+  <RequirementArguments>
+    <Row RequirementId="REQ_TPL_TIER0" Name="BuildingType" Value="BUILDING_BIG_BEN"/>
+    <Row RequirementId="REQ_TPL_TIER1" Name="BuildingType" Value="BUILDING_TPL_TIER1_VICTORY"/>
+    <Row RequirementId="REQ_TPL_TIER2" Name="BuildingType" Value="BUILDING_TPL_TIER2_VICTORY"/>
+  </RequirementArguments>
+
+  <RequirementSetRequirements>
+    <Row RequirementSetId="REQSET_TPL_TIER0" RequirementId="REQ_TPL_TIER0"/>
+    <Row RequirementSetId="REQSET_TPL_TIER1" RequirementId="REQ_TPL_TIER1"/>
+    <Row RequirementSetId="REQSET_TPL_TIER2" RequirementId="REQ_TPL_TIER2"/>
+  </RequirementSetRequirements>
+
+  <!-- ===== ③ 进度文本 =====
+       官方通用页签会去 RequirementStrings 里找 Context="VictoryProgress" 这一行。
+       不写 → 页签上显示内部常量（一串英文 ID），很丑。 -->
+  <RequirementStrings>
+    <Row RequirementId="REQ_TPL_TIER0" Context="VictoryProgress" Text="LOC_TPL_TIER0_PROGRESS"/>
+    <Row RequirementId="REQ_TPL_TIER1" Context="VictoryProgress" Text="LOC_TPL_TIER1_PROGRESS"/>
+    <Row RequirementId="REQ_TPL_TIER2" Context="VictoryProgress" Text="LOC_TPL_TIER2_PROGRESS"/>
+  </RequirementStrings>
+
+  <!-- ===== ④ 判胜标记建筑（只有 D 路线需要；走 A/B/C 就整段删掉）=====
+       InternalOnly=1 → 不出现在建造列表，只能被脚本创建
+       MustPurchase=1 → 不能用生产力造
+       Cost 给个大数，避免任何意外路径把它造出来 -->
+  <Buildings>
+    <Row BuildingType="BUILDING_TPL_TIER1_VICTORY"
+         Name="LOC_BUILDING_TPL_TIER1_VICTORY"
+         Description="LOC_BUILDING_TPL_TIER1_VICTORY_DESC"
+         Cost="100000" MustPurchase="1" InternalOnly="1"/>
+    <Row BuildingType="BUILDING_TPL_TIER2_VICTORY"
+         Name="LOC_BUILDING_TPL_TIER2_VICTORY"
+         Description="LOC_BUILDING_TPL_TIER2_VICTORY_DESC"
+         Cost="100000" MustPurchase="1" InternalOnly="1"/>
+  </Buildings>
+
+  <!-- ===== ⑤ 让 AI 也会走这条胜利（可选）=====
+       不写则 AI 不会主动追求。实测引擎对自定义 VictoryType 的 AI 策略链支持有限，
+       若 AI 不主动建造，可在 Lua 侧做"模拟进度"来驱动。 -->
+  <Strategies>
+    <Row StrategyType="STRATEGY_TPL_TIER0" VictoryType="VICTORY_TPL_TIER0" NumConditionsNeeded="1"/>
+  </Strategies>
+
+  <StrategyConditions>
+    <Row StrategyType="STRATEGY_TPL_TIER0" ConditionFunction="Is Modern" ThresholdValue="1"/>
+  </StrategyConditions>
+
+  <Strategy_Priorities>
+    <Row StrategyType="STRATEGY_TPL_TIER0" ListType="TPL_Tier0Wonders"/>
+  </Strategy_Priorities>
+
+  <AiListTypes>
+    <Row ListType="TPL_Tier0Wonders"/>
+  </AiListTypes>
+
+  <AiLists>
+    <Row ListType="TPL_Tier0Wonders" System="Buildings"/>
+  </AiLists>
+
+  <AiFavoredItems>
+    <Row ListType="TPL_Tier0Wonders" Item="BUILDING_BIG_BEN" Favored="1"/>
+  </AiFavoredItems>
+
+  <!-- =============================================================================================
+       其它三条路线怎么写（本模板没启用，取消注释、改个 ID 即可）
+
+       共同点：只换 §② 的 RequirementType / RequirementArguments，
+               §④ 整段删掉，判定脚本也不需要 —— 引擎每回合自己算。
+
+       A. 真实建筑 / 奇观
+       B. 完成项目（官方科学胜利就是这条）
+       C. 资源 / 点数（官方分数胜利、GS 科学胜利都用到）
+       =============================================================================================
+
+  <Requirements>
+    <Row RequirementId="REQ_MYVICTORY_A" RequirementType="REQUIREMENT_PLAYER_HAS_BUILDING"/>
+  </Requirements>
+  <RequirementArguments>
+    <Row RequirementId="REQ_MYVICTORY_A" Name="BuildingType" Value="BUILDING_BIG_BEN"/>
+  </RequirementArguments>
+
+  <Requirements>
+    <Row RequirementId="REQ_MYVICTORY_B" RequirementType="REQUIREMENT_PLAYER_HAS_COMPLETED_PROJECT" Persistent="1"/>
+  </Requirements>
+  <RequirementArguments>
+    <Row RequirementId="REQ_MYVICTORY_B" Name="ProjectType" Value="PROJECT_LAUNCH_MARS_BASE"/>
+  </RequirementArguments>
+
+  <Requirements>
+    <Row RequirementId="REQ_MYVICTORY_C1" RequirementType="REQUIREMENT_PLAYER_HAS_RESOURCE_OWNED"/>
+  </Requirements>
+  <RequirementArguments>
+    <Row RequirementId="REQ_MYVICTORY_C1" Name="ResourceType" Value="RESOURCE_IRON"/>
+  </RequirementArguments>
+
+  <Requirements>
+    <Row RequirementId="REQ_MYVICTORY_C2" RequirementType="REQUIREMENT_PLAYER_HAS_SCIENCE_VICTORY_POINTS" Persistent="1"/>
+  </Requirements>
+  -->
+</GameInfo>

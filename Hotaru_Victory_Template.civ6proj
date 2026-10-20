@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Default</Configuration>
+    <Name>LOC_TPL_MOD_NAME</Name>
+    <Guid>b8d2f6a1-4c53-4e9f-8b72-1a3c8d5e9f24</Guid>
+    <ProjectGuid>3f9c1d47-6b28-4a1e-9c55-8d2b7a4e6f10</ProjectGuid>
+    <ModVersion>1</ModVersion>
+    <Teaser>LOC_TPL_MOD_TEASER</Teaser>
+    <Description>LOC_TPL_MOD_DESC</Description>
+    <Authors>你的名字</Authors>
+    <SpecialThanks>
+    </SpecialThanks>
+    <AffectsSavedGames>true</AffectsSavedGames>
+    <SupportsSinglePlayer>true</SupportsSinglePlayer>
+    <SupportsMultiplayer>true</SupportsMultiplayer>
+    <SupportsHotSeat>true</SupportsHotSeat>
+    <CompatibleVersions>2.0</CompatibleVersions>
+    <AssociationData><![CDATA[<Associations>
+  <Dependency type="Dlc" title="Expansion: Gathering Storm" id="4873eb62-8ccc-4574-b784-dda455e74e68" />
+  <Dependency type="Mod" title="Hotaru's Victory Framework" id="bb597752-5b2d-425e-b9a0-f9e4d257d0be" />
+</Associations>]]></AssociationData>
+    <AssemblyName>Hotaru_Victory_Template</AssemblyName>
+    <RootNamespace>Hotaru_Victory_Template</RootNamespace>
+    <ModProperties>
+      <CustomProperties xmlns="" />
+    </ModProperties>
+    <InGameActionData><![CDATA[<InGameActions><UpdateDatabase id="TPL_Types"><Properties><LoadOrder>200</LoadOrder></Properties><File>Data/TPL_Types.xml</File></UpdateDatabase><UpdateDatabase id="TPL_Victories"><Properties><LoadOrder>210</LoadOrder></Properties><File>Data/TPL_Victories.xml</File></UpdateDatabase><UpdateText id="TPL_Text_InGame"><File>Text/en_us.xml</File><File>Text/zh_hans_cn.xml</File><File>Text/zh_hant_hk.xml</File></UpdateText><AddGameplayScripts id="TPL_Gameplay"><File>Script/TPL_Gameplay.lua</File></AddGameplayScripts><ImportFiles id="TPL_Provider_Tier1"><File>UI/HotaruVictoryFramework_Provider_VICTORY_TPL_TIER1.lua</File></ImportFiles><ImportFiles id="TPL_Provider_Tier2"><File>UI/HotaruVictoryFramework_Provider_VICTORY_TPL_TIER2.lua</File></ImportFiles><ImportFiles id="TPL_EndGame"><File>EndGame/EndGameMenu_VICTORY_TPL.lua</File></ImportFiles></InGameActions>]]></InGameActionData>
+    <FrontEndActionData><![CDATA[<FrontEndActions><UpdateDatabase id="TPL_Config"><File>Config/TPL_Config.xml</File></UpdateDatabase><UpdateText id="TPL_Text_FrontEnd"><File>Text/en_us.xml</File><File>Text/zh_hans_cn.xml</File><File>Text/zh_hant_hk.xml</File></UpdateText></FrontEndActions>]]></FrontEndActionData>
+    <LocalizedTextData><![CDATA[
+      <LocalizedText>
+        <Text id="LOC_TPL_MOD_NAME">
+          <en_US>Hotaru's Civilization VI Victory Mod Template</en_US>
+          <zh_Hans_CN>草之爹的文明6胜利MOD模板</zh_Hans_CN>
+          <zh_Hant_HK>草之爹的文明6勝利MOD模板</zh_Hant_HK>
+        </Text>
+        <Text id="LOC_TPL_MOD_DESC">
+          <en_US>Demonstrates the three tiers of custom victory mods: Tier 0 database only, Tier 1 custom ranking, Tier 2 custom tab.</en_US>
+          <zh_Hans_CN>演示三个档位的胜利 MOD 写法：Tier 0 纯数据库、Tier 1 自定义排序、Tier 2 自定义页签。</zh_Hans_CN>
+          <zh_Hant_HK>演示三個檔位的勝利 MOD 寫法：Tier 0 純資料庫、Tier 1 自訂排序、Tier 2 自訂頁籤。</zh_Hant_HK>
+        </Text>
+        <Text id="LOC_TPL_MOD_TEASER">
+          <en_US>A tutorial template for custom victory mods.</en_US>
+          <zh_Hans_CN>胜利 MOD 写法教程。</zh_Hans_CN>
+          <zh_Hant_HK>勝利 MOD 寫法教學。</zh_Hant_HK>
+        </Text></LocalizedText>]]></LocalizedTextData>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Default' ">
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Config\TPL_Config.xml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Data\TPL_Types.xml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Data\TPL_Victories.xml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="EndGame\EndGameMenu_VICTORY_TPL.lua">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Script\TPL_Gameplay.lua">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Text\en_us.xml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Text\zh_hans_cn.xml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Text\zh_hant_hk.xml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UI\HotaruVictoryFramework_Provider_VICTORY_TPL_TIER1.lua">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UI\HotaruVictoryFramework_Provider_VICTORY_TPL_TIER2.lua">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
+    <Folder Include="Data\" />
+    <Folder Include="EndGame\" />
+    <Folder Include="Script\" />
+    <Folder Include="Text\" />
+    <Folder Include="UI\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)Civ6.targets" />
+</Project>
